@@ -6,12 +6,15 @@ project(dumb_alloc
 
 option(ENABLE_TESTS "Enable tests to build" ON)
 option(ENABLE_EXAMPLES "Enable examples to build" ON)
+option(LINK_FLAGS "Linker flags" "-nodefaultlibs -nolibc")
 
 add_library(dumb_alloc STATIC
     ${CMAKE_CURRENT_LIST_DIR}/src/alloc.c
     ${CMAKE_CURRENT_LIST_DIR}/src/alloc.h)
 
-target_link_options(dumb_alloc PRIVATE -nodefaultlibs -nolibc)
+target_link_options(dumb_alloc PRIVATE ${LINK_FLAGS})
+
+include(GNUInstallDirs)
 
 include(GNUInstallDirs)
 
